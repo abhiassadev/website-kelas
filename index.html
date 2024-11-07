@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home- Kelas RPL</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gaya umum */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            color: #333; /* Warna teks utama yang lebih gelap untuk kontras yang lebih baik */
+        }
+
+        /* Container menu */
+        .menu-container {
+            position: relative;
+        }
+
+        /* Hamburger menu */
+        .hamburger-menu {
+            font-size: 30px;
+            font-weight: bold; /* Font lebih tebal */
+            cursor: pointer;
+            padding: 20px;
+            background-color:#007bff; /* Warna biru yang lebih lembut */
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+ Memberikan sudut lebih lembut pada tombol */
+        }
+
+        /* Menu navigasi */
+        .nav-menu {
+            display: none;
+            background-color: ; /* Warna latar belakang yang lebih gelap untuk kontras */
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Menu items */
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: bold; /* Font tebal untuk item menu */
+        }
+
+        .nav-menu ul li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Links dalam menu */
+        .nav-menu ul li a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff; /* Warna teks putih untuk kontras yang lebih baik */
+            background-color: #0056b3; /* Warna latar belakang item menu */
+            border-bottom: 2px solid #007bff; /* Garis bawah lebih tipis dan lebih soft */
+            transition: background-color 0.3s ease;
+            border-radius: 30px; /* Memberikan sudut lebih lembut */
+        }
+
+        /* Hover efek pada link */
+        .nav-menu ul li a:hover {
+            background-color: #005f73; /* Warna saat hover yang lebih lembut */
+        }
+
+        /* Konten utama */
+        .content {
+            padding: 20px;
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <!-- Hamburger icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; <!-- Garis tiga untuk hamburger menu -->
+        </div>
+
+        <!-- Menu navigasi -->
+        <nav id="navMenu" class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visi-misi.html">Visi-Misi</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sosmed.html">Media Sosial</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <!-- Konten utama -->
+    </div>
+
+    <script>
+        // Fungsi untuk toggle menu dan animasi muncul berurutan
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            var items = document.querySelectorAll(".nav-menu ul li");
+
+            // Jika menu sudah terbuka, sembunyikan dengan animasi
+            if (menu.style.display === "block") {
+                menu.style.opacity = 0;
+                menu.style.transform = "translateY(-20px)";
+                items.forEach(function(item) {
+                    item.classList.remove("show");
+                });
+                setTimeout(function() {
+                    menu.style.display = "none";
+                }, 500); // Waktu animasi menutup
+            } else {
+                menu.style.display = "block";
+                setTimeout(function() {
+                    menu.style.opacity = 1;
+                    menu.style.transform = "translateY(0)";
+                    // Tampilkan item menu satu per satu dengan delay
+                    items.forEach(function(item, index) {
+                        setTimeout(function() {
+                            item.classList.add("show");
+                        }, index * 100); // Delay per item menu (100ms)
+                    });
+                }, 10); // Waktu delay agar animasi opacity dimulai
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+</html>
+
+<body>
+    <div class="container">
+        <!-- Profile Wrapper dengan Border -->
+        <div class="profile-wrapper">
+            <!-- Foto Sampul -->
+            <img src="Sampul.jpg" alt="Foto Sampul" class="cover-photo">
+
+            <!-- Avatar -->
+            <img src="logo.jpg" alt="Avatar" class="avatar">
+
+            <!-- Nama dan Bio -->
+            <div class="profile-info">
+                <h1>WELCOME TO CLASS</h1>
+                <h1>SOFTWARE ENGINERING</h1>
+                <a href="https://www.instagram.com/smkn1cipeundeuykbb?igsh=MWF3ZzJvNnJqZjhscA=="<p><strong>PART OF SMKN 1 CIPEUNDEUY</strong></p></a>
+               <a href="https://www.instagram.com/njulyanasari/profilecard/?igsh=dmQ3M2wwM3NvZ3U4"> <p><strong>TEACHER NINING JULYANASARI</strong></p>
+               <a/>
+                               <p><strong>37 PEOPLE</strong></p>
+            </div>
+
+            
+        </div>
+    </div>
+
+</body>
+</html>
