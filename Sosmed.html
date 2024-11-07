@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home - Kelas RPL</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Menambahkan Font Awesome CDN untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Gaya umum */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradien latar belakang */
+            color: #fff;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Container menu */
+        .menu-container {
+            position: relative;
+        }
+
+        /* Hamburger menu */
+        .hamburger-menu {
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger-menu:hover {
+            transform: scale(1.1); /* Efek zoom saat hover */
+        }
+
+        /* Menu navigasi */
+        .nav-menu {
+            display: none;
+            background-color: #333;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            border-radius: 8px;
+        }
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .nav-menu ul li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-menu ul li a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0056b3;
+            border-bottom: 2px solid #007bff;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .nav-menu ul li a:hover {
+            background-color: #004085;
+            transform: scale(1.05); /* Efek zoom pada hover */
+        }
+
+        /* Konten utama */
+        .content {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        /* Tombol sosial media */
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: socialButtonAnimation 1s forwards;
+        }
+
+        .social-buttons a {
+            background-color: #007bff;
+            color: white;
+            padding: 18px 30px;
+            margin: 15px 0;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan */
+        }
+
+        .social-buttons a .icon {
+            margin-right: 15px;
+        }
+
+        .social-buttons a:hover {
+            background-color: #0056b3;
+            transform: translateY(-5px); /* Efek geser ke atas */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Bayangan lebih tebal */
+        }
+
+        /* Animasi untuk tombol sosial media */
+        @keyframes socialButtonAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-buttons a:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .social-buttons a:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .social-buttons a:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                padding: 15px;
+            }
+            .social-buttons a {
+                width: 80%;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="menu-container">
+        <!-- Hamburger icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; <!-- Garis tiga untuk hamburger menu -->
+        </div>
+
+        <!-- Menu navigasi -->
+        <nav id="navMenu" class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visi-misi.html">Visi-Misi</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sosmed.html">Media Sosial</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <!-- Konten utama -->
+
+        <!-- Tombol Media Sosial -->
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/elevenrpl__?igsh=YjFuOTRsNTNlN2Qy" target="_blank">
+                <span class="icon"><i class="fab fa-instagram"></i></span>Instagram</a>
+            <a href="klaf.html" target="_blank">
+                <span class="icon"><i class="fab fa-facebook"></i></span> Facebook
+            </a>
+            <a href="klaf.html" target="_blank">
+                <span class="icon"><i class="fab fa-twitter"></i></span> Twitter
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle menu dan animasi muncul berurutan
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            var items = document.querySelectorAll(".nav-menu ul li");
+
+            // Jika menu sudah terbuka, sembunyikan dengan animasi
+            if (menu.style.display === "block") {
+                menu.style.opacity = 0;
+                menu.style.transform = "translateY(-20px)";
+                items.forEach(function(item) {
+                    item.classList.remove("show");
+                });
+                setTimeout(function() {
+                    menu.style.display = "none";
+                }, 500); // Waktu animasi menutup
+            } else {
+                menu.style.display = "block";
+                setTimeout(function() {
+                    menu.style.opacity = 1;
+                    menu.style.transform = "translateY(0)";
+                    // Tampilkan item menu satu per satu dengan delay
+                    items.forEach(function(item, index) {
+                        setTimeout(function() {
+                            item.classList.add("show");
+                        }, index * 100); // Delay per item menu (100ms)
+                    });
+                }, 10); // Waktu delay agar animasi opacity dimulai
+            }
+        }
+    </script>
+
+</body>
+</html>
