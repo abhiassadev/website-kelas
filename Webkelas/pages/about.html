@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Kelas RPL</title>
+    <link rel="stylesheet" href="style.css">
+<body>
+    <style>
+        /* Reset CSS */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fix color code */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Animasi untuk header */
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    animation: fadeIn 2s ease-in-out; /* Animasi Fade-in */
+}
+
+/* Animasi untuk tombol navigasi */
+nav a {
+    color: #fff;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out; /* Transisi halus saat hover */
+}
+
+/* Animasi tombol saat hover */
+nav a:hover {
+    background-color: #ddd;
+    color: #333;
+    transform: scale(1.1); /* Membesar saat hover */
+}
+
+/* Animasi pada konten */
+.about {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: slideIn 1.5s ease-out forwards; /* Animasi Slide-in dengan fade-in */
+}
+
+.about h2 {
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.about p {
+    margin-bottom: 10px;
+}
+
+/* Animasi tombol navigasi */
+.nav-buttons button {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px); /* Animasi tombol saat hover */
+}
+
+/* Animasi pada footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    animation: slideUp 1.5s ease-out forwards; /* Animasi footer muncul dari bawah */
+}
+
+/* Keyframes untuk animasi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+    </style>
+    <style>
+        /* Gaya umum */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            color: #333; /* Warna teks utama yang lebih gelap untuk kontras yang lebih baik */
+        }
+
+        /* Container menu */
+        .menu-container {
+            position: relative;
+        }
+
+        /* Hamburger menu */
+        .hamburger-menu {
+            font-size: 30px;
+            font-weight: bold; /* Font lebih tebal */
+            cursor: pointer;
+            padding: 20px;
+            background-color:#007bff; /* Warna biru yang lebih lembut */
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+ Memberikan sudut lebih lembut pada tombol */
+        }
+
+        /* Menu navigasi */
+        .nav-menu {
+            display: none;
+            background-color: ; /* Warna latar belakang yang lebih gelap untuk kontras */
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Menu items */
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: bold; /* Font tebal untuk item menu */
+        }
+
+        .nav-menu ul li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Links dalam menu */
+        .nav-menu ul li a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff; /* Warna teks putih untuk kontras yang lebih baik */
+            background-color: #0056b3; /* Warna latar belakang item menu */
+            border-bottom: 2px solid #007bff; /* Garis bawah lebih tipis dan lebih soft */
+            transition: background-color 0.3s ease;
+            border-radius: 30px; /* Memberikan sudut lebih lembut */
+        }
+
+        /* Hover efek pada link */
+        .nav-menu ul li a:hover {
+            background-color: #005f73; /* Warna saat hover yang lebih lembut */
+        }
+
+        /* Konten utama */
+        .content {
+            padding: 20px;
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <!-- Hamburger icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; <!-- Garis tiga untuk hamburger menu -->
+        </div>
+
+        <!-- Menu navigasi -->
+        <nav id="navMenu" class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visi-misi.html">Visi-Misi</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sosmed.html">Media Sosial</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <!-- Konten utama -->
+    </div>
+
+    <script>
+        // Fungsi untuk toggle menu dan animasi muncul berurutan
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            var items = document.querySelectorAll(".nav-menu ul li");
+
+            // Jika menu sudah terbuka, sembunyikan dengan animasi
+            if (menu.style.display === "block") {
+                menu.style.opacity = 0;
+                menu.style.transform = "translateY(-20px)";
+                items.forEach(function(item) {
+                    item.classList.remove("show");
+                });
+                setTimeout(function() {
+                    menu.style.display = "none";
+                }, 500); // Waktu animasi menutup
+            } else {
+                menu.style.display = "block";
+                setTimeout(function() {
+                    menu.style.opacity = 1;
+                    menu.style.transform = "translateY(0)";
+                    // Tampilkan item menu satu per satu dengan delay
+                    items.forEach(function(item, index) {
+                        setTimeout(function() {
+                            item.classList.add("show");
+                        }, index * 100); // Delay per item menu (100ms)
+                    });
+                }, 10); // Waktu delay agar animasi opacity dimulai
+            }
+        }
+    </script>
+
+</body>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>About Rpl</h1>
+        <p>Website ini untuk mempelajari lebih lanjut tentang RPL dan pengembangan aplikasi</p>
+    </header>
+
+    <!-- Navigation Bar -->
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Index Section -->
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2>Tentang RPL</h2>
+            <p>Rekayasa Perangkat Lunak (RPL) adalah bidang yang sangat penting dalam dunia teknologi informasi. RPL berfokus pada penerapan prinsip rekayasa dalam pengembangan perangkat lunak, termasuk di dalamnya analisis kebutuhan pengguna, desain perangkat lunak, pengujian, pemeliharaan, dan manajemen proyek perangkat lunak.</p>
+            <p>Program ini bertujuan untuk menghasilkan perangkat lunak yang berkualitas tinggi, efisien, dan dapat diandalkan untuk memenuhi kebutuhan pengguna dan organisasi.</p>
+        </section>
+</body>
+</html>
