@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Angka</title>
+    <style>
+        /* style.css */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            width: 80%;
+            margin-top: 15px;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 90%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #resetButton {
+            margin-top: 20px;
+            background-color: #28a745;
+        }
+
+        #resetButton:hover {
+            background-color: #218838;
+        }
+
+        #resetButton:active {
+            background-color: #1e7e34;
+        }
+
+        #submitGuess:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Styling for the back button */
+        #backButton {
+            background-color: #dc3545;
+            margin-top: 15px;
+        }
+
+        #backButton:hover {
+            background-color: #c82333;
+        }
+
+        /* Small screens */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tebak Angka</h1>
+        <p>Saya telah memilih angka antara 1 dan 100. Coba tebak!</p>
+        <input type="number" id="guess" placeholder="Masukkan angka" />
+        <button id="submitGuess">Tebak</button>
+        <p id="message"></p>
+        <p>Jumlah tebakan: <span id="attempts">0</span></p>
+        <button id="resetButton" style="display:none;">Main Lagi</button>
+        <!-- Tombol untuk kembali ke halaman sebelumnya -->
+        <button id="backButton" onclick="goBack()">Kembali</button>
+    </div>
+
+    <script>
+        // script.js
+        let targetNumber;
+        let attempts = 0;
+
+        const guessInput = document.getElementById('guess');
+        const submitButton = document.getElementById('submitGuess');
+        const message = document.getElementById('message');
+        const attemptsCounter = document.getElementById('attempts');
+        const resetButton = document.getElementById('resetButton');
+        const backButton = document.getElementById('backButton');
+
+        function startGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            attemptsCounter.textContent = attempts;
+            message.textContent = '';
+            guessInput.value = '';
+            submitButton.disabled = false;
+            resetButton.style.display = 'none';
+        }
+
+        function checkGuess() {
+            const userGuess = Number(guessInput.value);
+            attempts++;
+            attemptsCounter.textContent = attempts;
+
+            if (userGuess === targetNumber) {
+                message.textContent = `Selamat! Anda menebak dengan benar! Angka yang benar adalah ${targetNumber}.`;
+                submitButton.disabled = true;
+                resetButton.style.display = 'inline-block';
+            } else if (userGuess < targetNumber) {
+                message.textContent = 'Terlalu rendah! Coba lagi.';
+            } else if (userGuess > targetNumber) {
+                message.textContent = 'Terlalu tinggi! Coba lagi.';
+            }
+        }
+
+        // Fungsi untuk kembali ke halaman sebelumnya
+        function goBack() {
+            window.history.back(); // Fungsi ini akan membawa pengguna ke halaman sebelumnya
+        }
+
+        submitButton.addEventListener('click', checkGuess);
+
+        resetButton.addEventListener('click', startGame);
+
+        // Mulai permainan saat pertama kali halaman dimuat
+        startGame();
+    </script>
+</body>
+</html>

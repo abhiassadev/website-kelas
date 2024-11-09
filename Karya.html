@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home- Kelas RPL</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+/* Gaya untuk teks "Klik gambar untuk main" di atas gambar dengan border dan ukuran lebih kecil */
+/* Gaya untuk teks "Klik gambar untuk main" di atas gambar dengan border, ukuran lebih kecil, dan animasi */
+.click-text {
+    font-size: 0.9em; /* Ukuran font lebih kecil */
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px; /* Memberikan jarak lebih kecil antara teks dan gambar */
+    border: 2px solid #007bff; /* Border berwarna biru dengan ketebalan 2px */
+    border-radius: 5px; /* Sudut border yang membulat */
+    padding: 3px 8px; /* Padding lebih kecil di sekitar teks */
+    background-color: rgba(255, 255, 255, 0.8); /* Latar belakang putih transparan untuk teks */
+    opacity: 0; /* Mulai dengan transparansi 0, agar teks tidak terlihat */
+    animation: fadeInUp 1s forwards; /* Terapkan animasi fadeInUp selama 1 detik */
+}
+
+/* Animasi untuk teks agar muncul dari bawah (slide-up effect) */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Teks mulai dari bawah */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Teks bergerak ke posisi normal */
+    }
+}
+
+/* Gaya untuk teks "Klik gambar untuk main" di atas gambar */
+.click-text {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px; /* Memberikan jarak antara teks dan gambar */
+}
+
+/* Animasi untuk judul */
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styling judul dengan animasi masuk */
+.judul {
+    font-size: 2.2em; /* Ukuran font lebih proporsional */
+    font-family: 'Roboto', sans-serif; /* Menggunakan font yang modern dan clean */
+    font-weight: 500; /* Memberikan ketebalan yang sedang, tidak terlalu tebal */
+    color: #333; /* Warna abu-abu gelap agar tidak terlalu mencolok */
+    margin: 30px 0; /* Memberikan margin atas dan bawah yang lebih besar */
+    padding: 0; /* Menghapus padding untuk desain yang lebih bersih */
+    text-align: center; /* Menyelaraskan judul ke tengah */
+    animation: slideInFromTop 1s ease forwards; /* Animasi masuk */
+    letter-spacing: 1px; /* Memberikan sedikit jarak antar huruf */
+    transform: scale(1); /* Menghindari pembesaran berlebih */
+    text-transform: capitalize; /* Menambahkan efek huruf kapital pada setiap kata */
+}
+
+/* Gaya umum */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Container menu */
+.menu-container {
+    position: relative;
+}
+
+/* Hamburger menu */
+.hamburger-menu {
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Menu navigasi */
+.nav-menu {
+    display: none;
+    background-color: ;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Menu items */
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.nav-menu ul li.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Links dalam menu */
+.nav-menu ul li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0056b3;
+    border-bottom: 2px solid #007bff;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover efek pada link */
+.nav-menu ul li a:hover {
+    background-color: #005f73;
+}
+
+/* Konten utama */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Judul tampilan */
+.judul {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Tombol dengan gambar besar dan deskripsi */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Gambar besar dengan efek hover */
+.button-container {
+    position: relative;
+    width: 300px; /* Lebar gambar */
+    border-radius: 10px;
+    overflow: hidden; /* Menyembunyikan bagian gambar yang keluar */
+    opacity: 0; /* Gambar akan mulai tersembunyi */
+    animation: slideIn 1s ease forwards; /* Animasi slideIn */
+}
+
+/* Animasi untuk gambar masuk secara berurutan */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Memulai dari bawah */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Posisi akhir di tempat semula */
+    }
+}
+
+.button-container:nth-child(1) {
+    animation-delay: 0s; /* Gambar pertama muncul segera */
+}
+
+.button-container:nth-child(2) {
+    animation-delay: 0.3s; /* Gambar kedua muncul setelah 0.3 detik */
+}
+
+.button-container:nth-child(3) {
+    animation-delay: 0.6s; /* Gambar ketiga muncul setelah 0.6 detik */
+}
+
+.button-container:nth-child(4) {
+    animation-delay: 0.9s; /* Gambar keempat muncul setelah 0.9 detik */
+}
+
+.button-container img {
+    width: 100%;
+    height: auto;
+    border: 5px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover efek pada gambar */
+.button-container img:hover {
+    transform: scale(1.05); /* Membesar sedikit saat hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay teks di atas gambar */
+.button-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 100%; /* Batas tinggi untuk overlay */
+    background: rgba(0, 123, 255, 0.7); /* Transparan hitam untuk overlay */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Jika teks terlalu panjang, overlay bisa digulir */
+}
+
+/* Judul dan Deskripsi dalam overlay */
+.button-container .overlay h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase; /* Menambah penekanan */
+    letter-spacing: 1px; /* Menambah jarak antar huruf */
+}
+
+.button-container .overlay p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* Tombol dalam gambar */
+.button-container button {
+    padding: 12px 35px;
+    font-size: 1.2em;
+    border: none;
+    background: #0056b3;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover efek pada tombol */
+.button-container button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Efek overlay saat hover pada gambar */
+.button-container:hover .overlay {
+    opacity: 1; /* Menampilkan overlay saat hover pada gambar */
+}
+
+/* Tombol Terpisah di bawah */
+.bottom-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; /* Jarak dari konten sebelumnya */
+}
+
+.bottom-button {
+    padding: 12px 30px;
+    font-size: 1.2em;
+    border: none;
+    background-color: #007bff; /* Warna hijau */
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover efek pada tombol */
+.bottom-button:hover {
+    background-color: #218838; /* Warna hijau lebih gelap saat hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .button-container {
+        width: 100%;
+    }
+
+    .button-container img {
+        width: 80%;
+    }
+}
+
+</style>
+</head>
+<body>
+    <div class="menu-container">
+        <!-- Hamburger icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; <!-- Garis tiga untuk hamburger menu -->
+        </div>
+
+        <!-- Menu navigasi -->
+        <nav id="navMenu" class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visi-misi.html">Visi-Misi</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sosmed.html">Media Sosial</a></li>
+                <li><a href="karya.html">Karya</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <!-- Judul -->
+        <div class="judul"><h5>Ini dia, beberapa game buatan kami yang siap nemenin waktu kamu.</h5></div>
+        
+        <div class="click-text">Klik gambar untuk main</div>
+        <!-- Tombol dengan gambar besar dan deskripsi -->
+        <div class="button-container">
+            <img src="game1.jpg" alt="Image 1">
+            <div class="overlay">
+                <h2>Tebak Angka</h2>
+                <p>Bergabunglah dalam permainan seru "Tebak Angka", di mana ketajaman logika dan insting Anda akan diuji! , Anda harus menebak angka yang tersembunyi berdasarkan petunjuk yang diberikan.</p>
+                <a href="game1.html">
+                    <button>Mainkan</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <img src="game2.jpg" alt="Image 2">
+            <div class="overlay">
+                <h2>TEBAK KATA</h2>
+                <p>Tebak Kata adalah permainan seru yang menguji kemampuan bahasa dan kecepatan berpikirmu. Dalam setiap level, kamu akan diberikan petunjuk singkat atau deskripsi, dan tugasmu adalah menebak kata yang tepat.</p>
+                <a href="game2.html">
+                    <button>Mainkan</button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tombol Terpisah di bawah -->
+        <div class="bottom-button-container">
+            <a href="https://poki.com/id">
+                <button class="bottom-button">lihat lebih banyak game>></button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle menu dan animasi muncul berurutan
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            var items = document.querySelectorAll(".nav-menu ul li");
+
+            // Jika menu sudah terbuka, sembunyikan dengan animasi
+            if (menu.style.display === "block") {
+                menu.style.opacity = 0;
+                menu.style.transform = "translateY(-20px)";
+                setTimeout(() => {
+                    menu.style.display = "none";
+                }, 300); // Waktu animasi menutup
+            } else {
+                menu.style.display = "block";
+                setTimeout(() => {
+                    menu.style.opacity = 1;
+                    menu.style.transform = "translateY(0)";
+                }, 10); // Waktu delay agar animasi opacity dimulai
+
+                // Tampilkan item menu satu per satu dengan delay
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add("show");
+                    }, 100 * index); // Delay per item menu (100ms)
+                });
+            }
+        }
+    </script>
+</body>
+</html>

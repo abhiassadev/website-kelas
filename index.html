@@ -1,14 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>XI RPL SMKN 1 Cipeundeuy</title>
-    <script type="module" crossorigin src="/assets/index-wdIUbzab.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-B3XyHmou.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home- Kelas RPL</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Menambahkan Font Awesome untuk ikon Instagram -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Gaya umum */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Border Wrapper */
+        .profile-wrapper {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Animasi untuk elemen yang muncul */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Foto Sampul */
+        .cover-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Avatar dan Nama di dalam Flexbox */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -50px; /* Mengurangi jarak antara avatar dan h1 */
+            padding: 20px 0;
+        }
+
+        /* Avatar */
+        .avatar {
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            border: 5px solid white;
+            object-fit: cover;
+            margin-bottom: 10px; /* Jarak antara avatar dan nama */
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1); /* Membesar sedikit saat hover */
+        }
+
+        /* Nama dan Bio */
+        .profile-info h1 {
+            font-size: 2.2em;
+            color: #333;
+            margin: 0; /* Menghilangkan margin atas dan bawah agar lebih rapat */
+        }
+
+        .profile-info p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .profile-info a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .social-icons {
+            margin-top: 10px;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5em;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: #E1306C; /* Warna merah muda khas Instagram */
+        }
+
+        /* Menu navigasi */
+        .menu-container {
+            position: relative;
+        }
+
+        .hamburger-menu {
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            background-color:#007bff;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-menu {
+            display: none;
+            background-color: ;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .nav-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu ul li {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .nav-menu ul li.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-menu ul li a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0056b3;
+            border-bottom: 2px solid #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-menu ul li a:hover {
+            background-color: #005f73;
+        }
+
+        /* Konten utama */
+        .content {
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <!-- Hamburger icon -->
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            &#9776; <!-- Garis tiga untuk hamburger menu -->
+        </div>
+
+        <!-- Menu navigasi -->
+        <nav id="navMenu" class="nav-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="visi-misi.html">Visi-Misi</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="sosmed.html">Media Sosial</a></li>
+                <li><a href="karya.html">Karya</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <!-- Profile Wrapper dengan Border -->
+        <div class="profile-wrapper">
+            <!-- Foto Sampul -->
+            <img src="Sampul.jpg" alt="Foto Sampul" class="cover-photo">
+
+            <!-- Avatar dan Nama -->
+            <div class="profile-info">
+                <img src="logo.jpg" alt="Avatar" class="avatar">
+                <h1>THE ONLY CLASS RPL 23-26</h1>
+                <a href="https://www.instagram.com/smkn1cipeundeuykbb?igsh=MWF3ZzJvNnJqZjhscA=="><p><strong>PART OF SMKN 1 CIPEUNDEUY</strong></p></a>
+                <a href="https://www.instagram.com/njulyanasari/profilecard/?igsh=dmQ3M2wwM3NvZ3U4"><p><strong>TEACHER NINING JULYANASARI</strong></p></a>
+                <p><strong>37 PEOPLE</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Kelas RPL. All rights reserved. Website dibuat oleh <strong>Ahmad budiman</strong>.</p>
+        <!-- Instagram link dan icon -->
+        <div class="social-icons">
+            <a href="https://www.instagram.com/bdmnnn___/profilecard/?igsh=MWFoZDFpamI5MDZ5dQ==" target="_blank" class="fab fa-instagram"></a>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk toggle menu dan animasi muncul berurutan
+        function toggleMenu() {
+            var menu = document.getElementById("navMenu");
+            var items = document.querySelectorAll(".nav-menu ul li");
+
+            if (menu.style.display === "block") {
+                menu.style.opacity = 0;
+                menu.style.transform = "translateY(-20px)";
+                items.forEach(function(item) {
+                    item.classList.remove("show");
+                });
+                setTimeout(function() {
+                    menu.style.display = "none";
+                }, 500);
+            } else {
+                menu.style.display = "block";
+                setTimeout(function() {
+                    menu.style.opacity = 1;
+                    menu.style.transform = "translateY(0)";
+                    items.forEach(function(item, index) {
+                        setTimeout(function() {
+                            item.classList.add("show");
+                        }, index * 100);
+                    });
+                }, 10);
+            }
+        }
+    </script>
+
+</body>
 </html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Kata - Petunjuk</title>
+    <style>
+        /* style.css */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            width: 80%;
+            margin-top: 15px;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 90%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #resetButton {
+            margin-top: 20px;
+            background-color: #28a745;
+        }
+
+        #resetButton:hover {
+            background-color: #218838;
+        }
+
+        #resetButton:active {
+            background-color: #1e7e34;
+        }
+
+        /* Styling for the back button */
+        #backButton {
+            background-color: #dc3545;
+            margin-top: 15px;
+        }
+
+        #backButton:hover {
+            background-color: #c82333;
+        }
+
+        /* Small screens */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tebak Kata</h1>
+        <p id="question">Petunjuk akan muncul di sini...</p>
+        <input type="text" id="guess" placeholder="Masukkan tebakan kata" />
+        <button id="submitGuess">Tebak</button>
+        <p id="message"></p>
+        <p>Jumlah tebakan: <span id="attempts">0</span></p>
+        <p id="explanation" style="font-size: 14px; color: #888;"></p>
+        <button id="resetButton" style="display:none;">Main Lagi</button>
+        <!-- Tombol untuk kembali ke halaman sebelumnya -->
+        <button id="backButton" onclick="goBack()">Kembali</button>
+    </div>
+
+    <script>
+        // script.js
+        let questionIndex = 0;
+        let attempts = 0;
+        const questions = [
+            { 
+                question: " Hewan apa yang suka makan ikan.",
+                answer: "Sapi",
+                explanation: "kenapa sapi? ah terserah yang bikin website we" 
+            },
+            { 
+                question: "kebo kebo apa yang bikin cape?", 
+                answer: "Kebogor jalan kaki", 
+                explanation: "awokawokawok kita masi bisa balikan gak sih?" 
+            },
+            { 
+                question: "kenapa ginjal ada 2", 
+                answer: "kalo 1 ganjil", 
+                explanation: "hahahahah gak nyangka kita seasing ini" 
+            },
+            { 
+                question: "ikan ikan apa yang bisa terbang", 
+                answer: "lelelawar", 
+                explanation: "hahahah kamu gak kangen aku?" 
+            },
+            { 
+                question: "makanan makanan apa yang jago berantem", 
+                answer: "tahu gulat", 
+                explanation: "hahahah kamu kapan balik?" 
+            },
+             { 
+                question: "ikan ikan apa yang gak saling kenal", 
+                answer: "ikan asing", 
+                explanation: "wkwkwkwkwkw ini serius kita asing" 
+            },
+            { 
+                question: "bayi nayi apa yang bisa ngusir nyamuk", 
+                answer: "bayigon", 
+                explanation: "wkwkwkwkwkwk aku salah ya sayang sama kamu?" 
+            },
+        ];
+
+        const questionElement = document.getElementById('question');
+        const guessInput = document.getElementById('guess');
+        const submitButton = document.getElementById('submitGuess');
+        const message = document.getElementById('message');
+        const attemptsCounter = document.getElementById('attempts');
+        const resetButton = document.getElementById('resetButton');
+        const explanationElement = document.getElementById('explanation');
+
+        function startGame() {
+            questionIndex = Math.floor(Math.random() * questions.length); // Pilih soal secara acak
+            attempts = 0;
+            attemptsCounter.textContent = attempts;
+            message.textContent = '';
+            explanationElement.textContent = '';
+            guessInput.value = '';
+            submitButton.disabled = false;
+            resetButton.style.display = 'none';
+            questionElement.textContent = questions[questionIndex].question;
+        }
+
+        function checkGuess() {
+            const userGuess = guessInput.value.trim().toLowerCase();
+            attempts++;
+            attemptsCounter.textContent = attempts;
+
+            if (userGuess === questions[questionIndex].answer.toLowerCase()) {
+                message.textContent = `Selamat! Anda menebak dengan benar! Jawaban yang benar adalah "${questions[questionIndex].answer}".`;
+                explanationElement.textContent = ''; // Hapus penjelasan setelah jawaban benar
+                submitButton.disabled = true;
+                resetButton.style.display = 'inline-block';
+            } else {
+                message.textContent = 'Salah tebakan! Coba lagi.';
+                explanationElement.textContent = `Jawaban yang benar adalah "${questions[questionIndex].answer}". ${questions[questionIndex].explanation}`;
+            }
+        }
+
+        // Fungsi untuk kembali ke halaman sebelumnya
+        function goBack() {
+            window.history.back(); // Fungsi ini akan membawa pengguna ke halaman sebelumnya
+        }
+
+        submitButton.addEventListener('click', checkGuess);
+        resetButton.addEventListener('click', startGame);
+
+        // Mulai permainan saat pertama kali halaman dimuat
+        startGame();
+    </script>
+</body>
+</html>

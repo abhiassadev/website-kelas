@@ -3,36 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home - Kelas RPL</title>
+    <title>About - Kelas RPL</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Menambahkan Font Awesome CDN untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+<body>
     <style>
-        /* Mengatur body dan html agar tidak bisa discroll */
-        html, body {
-            height: 100%;
-            margin: 0;
-            overflow: hidden; /* Menonaktifkan scroll */
-        }
+        /* Reset CSS */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fix color code */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Animasi untuk header */
+header {
+    background-color:white;
+    color:#007bff;
+    margin-top: px;
+    margin-bottom:30px; 
+    text-align: center;
+    padding: 1rem;
+    animation: fadeIn 2s ease-in-out; /* Animasi Fade-in */
+}
+
+/* Animasi untuk tombol navigasi */
+nav a {
+    color: #fff;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out; /* Transisi halus saat hover */
+}
+
+/* Animasi tombol saat hover */
+nav a:hover {
+    background-color: #ddd;
+    color: #333;
+    transform: scale(1.1); /* Membesar saat hover */
+}
+
+/* Animasi pada konten */
+.about {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: slideIn 1.5s ease-out forwards; /* Animasi Slide-in dengan fade-in */
+    margin-bottom: 50px; /* Jarak dari bawah */
+}
+
+.about h2 {
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.about p {
+    margin-bottom: 10px;
+}
+
+/* Animasi tombol navigasi */
+.nav-buttons button {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px); /* Animasi tombol saat hover */
+}
+
+/* Animasi pada footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    animation: slideUp 1.5s ease-out forwards; /* Animasi footer muncul dari bawah */
+}
+
+/* Keyframes untuk animasi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+    </style>
+    <style>
         /* Gaya umum */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            background: linear-gradient(135deg, #ffffff, #007bff); /* Latar belakang putih dan biru */
-            color: #333; /* Teks berwarna gelap agar mudah dibaca */
-        }
-
-        /* Logo */
-        .logo {
-            font-size: 40px;
-            font-weight: bold;
-            text-align: center;
-            margin: 30px 0;
-            color: #007bff; /* Warna logo biru */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f4f4f4;
+            color: #333; /* Warna teks utama yang lebih gelap untuk kontras yang lebih baik */
         }
 
         /* Container menu */
@@ -41,20 +147,6 @@
         }
 
         /* Hamburger menu */
-        .hamburger-menu {
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 20px;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            border-radius: px;
-            transition: transform 0.3s ease;
-        }
-
         .hamburger-menu {
             font-size: 30px;
             font-weight: bold; /* Font lebih tebal */
@@ -111,7 +203,7 @@
             background-color: #0056b3; /* Warna latar belakang item menu */
             border-bottom: 2px solid #007bff; /* Garis bawah lebih tipis dan lebih soft */
             transition: background-color 0.3s ease;
-            border-radius: px; /* Memberikan sudut lebih lembut */
+            border-radius: ; /* Memberikan sudut lebih lembut */
         }
 
         /* Hover efek pada link */
@@ -122,81 +214,12 @@
         /* Konten utama */
         .content {
             padding: 20px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.7); /* Latar belakang putih transparan */
-            border-radius: 12px;
-            margin: 20px auto;
-            max-width: 800px;
-            position:relative;
-        }
-
-        /* Tombol sosial media - Minimalis */
-        .social-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: socialButtonAnimation 1s forwards;
-        }
-
-        .social-buttons a {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px; /* Menyederhanakan padding */
-            margin: 8px 0; /* Mengurangi margin */
-            text-decoration: none;
-            border-radius: 25px; /* Menjaga bentuk tombol membulat */
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            font-size: 18px; /* Ukuran font sedikit lebih kecil */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-buttons a .icon {
-            margin-right: 10px;
-        }
-
-        .social-buttons a:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px); /* Efek geser sedikit ke atas */
-        }
-
-        /* Animasi untuk tombol sosial media */
-        @keyframes socialButtonAnimation {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .social-buttons a:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .social-buttons a:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .social-buttons a:nth-child(3) {
-            animation-delay: 0.6s;
         }
 
         /* Responsif untuk layar kecil */
         @media (max-width: 768px) {
             .hamburger-menu {
                 padding: 15px;
-            }
-            .social-buttons a {
-                width: 80%;
-                font-size: 16px; /* Ukuran font lebih kecil di perangkat mobile */
             }
         }
     </style>
@@ -217,25 +240,13 @@
                 <li><a href="visi-misi.html">Visi-Misi</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="sosmed.html">Media Sosial</a></li>
-                <li><a href="karya.html">Karya</a></li>
+                <li><a href="karya.html">karya </a></li>
             </ul>
         </nav>
     </div>
 
     <div class="content">
         <!-- Konten utama -->
-
-        <!-- Tombol Media Sosial -->
-        <div class="social-buttons">
-            <a href="https://www.instagram.com/elevenrpl__?igsh=YjFuOTRsNTNlN2Qy" target="_blank">
-                <span class="icon"><i class="fab fa-instagram"></i></span>Instagram</a>
-            <a href="klaf.html" target="_blank">
-                <span class="icon"><i class="fab fa-facebook"></i></span> Facebook
-            </a>
-            <a href="klaf.html" target="_blank">
-                <span class="icon"><i class="fab fa-twitter"></i></span> Twitter
-            </a>
-        </div>
     </div>
 
     <script>
@@ -270,5 +281,25 @@
         }
     </script>
 
+</body>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h4>Website ini untuk mempelajari lebih lanjut tentang RPL dan pengembangan aplikasi</h4>
+    </header>
+
+    <!-- Navigation Bar -->
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Index Section -->
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2>Tentang RPL</h2>
+            <p>Rekayasa Perangkat Lunak (RPL) adalah bidang yang sangat penting dalam dunia teknologi informasi. RPL berfokus pada penerapan prinsip rekayasa dalam pengembangan perangkat lunak, termasuk di dalamnya analisis kebutuhan pengguna, desain perangkat lunak, pengujian, pemeliharaan, dan manajemen proyek perangkat lunak.</p>
+            <p>Program ini bertujuan untuk menghasilkan perangkat lunak yang berkualitas tinggi, efisien, dan dapat diandalkan untuk memenuhi kebutuhan pengguna dan organisasi.</p>
+        </section>
 </body>
 </html>

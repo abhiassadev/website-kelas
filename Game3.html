@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rintangan Tahan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    #game-container {
+      border: 2px solid #333;
+    }
+
+    canvas {
+      display: block;
+      background-color: #87CEEB;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Ukuran Canvas
+    canvas.width = 800;
+    canvas.height = 400;
+
+    // Karakter Pemain
+    const player = {
+      x: 50,
+      y: canvas.height - 70,
+      width: 40,
+      height: 40,
+      speed: 5,
+      jumpHeight: 12,
+      dx: 0,
+      dy: 0,
+      gravity: 0.8,
+      grounded: false
+    };
+
+    // Rintangan
+    const obstacles = [];
+    const obstacleWidth = 30;
+    const obstacleHeight = 50;
+    let obstacleSpeed = 3;
+
+    // Kontrol Keyboard
+    let isJumping = false;
+    let jumpTimer = 0;
+
+    // Fungsi untuk menggambar pemain
+    function drawPlayer() {
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    // Fungsi untuk menggambar rintangan
+    function drawObstacles() {
+      ctx.fillStyle = 'red';
+      obstacles.forEach(obstacle => {
+        ctx.fillRect(obstacle.x, obstacle.y, obstacleWidth, obstacleHeight);
+      });
+    }
+
+    // Fungsi untuk membuat rintangan baru
+    function generateObstacle() {
+      const y = canvas.height - obstacleHeight;
+      const x = canvas.width;
+      obstacles.push({ x, y });
+    }
+
+    // Update posisi pemain
+    function updatePlayer() {
+      if (isJumping) {
+        if (jumpTimer < 12) {
+          player.dy = -player.jumpHeight;
+          jumpTimer++;
+        } else {
+          isJumping = false;
+        }
+      }
+
+      player.dy += player.gravity;
+      player.y += player.dy;
+
+      if (player.y >= canvas.height - player.height) {
+        player.y = canvas.height - player.height;
+        player.dy = 0;
+        player.grounded = true;
+        jumpTimer = 0;
+      } else {
+        player.grounded = false;
+      }
+
+      player.x += player.dx;
+    }
+
+    // Update rintangan
+    function updateObstacles() {
+      obstacles.forEach((obstacle, index) => {
+        obstacle.x -= obstacleSpeed;
+
+        // Hapus rintangan yang sudah keluar layar
+        if (obstacle.x + obstacleWidth < 0) {
+          obstacles.splice(index, 1);
+        }
+      });
+    }
+
+    // Cek tabrakan
+    function checkCollisions() {
+      obstacles.forEach(obstacle => {
+        if (player.x < obstacle.x + obstacleWidth &&
+          player.x + player.width > obstacle.x &&
+          player.y < obstacle.y + obstacleHeight &&
+          player.y + player.height > obstacle.y) {
+            // Tabrakan terjadi
+            alert("Game Over!");
+            resetGame();
+        }
+      });
+    }
+
+    // Reset permainan
+    function resetGame() {
+      player.x = 50;
+      player.y = canvas.height - 70;
+      player.dy = 0;
+      obstacles.length = 0;
+      isJumping = false;
+      jumpTimer = 0;
+      obstacleSpeed = 3;
+    }
+
+    // Fungsi untuk menggambar semua elemen dalam game
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawPlayer();
+      drawObstacles();
+      updatePlayer();
+      updateObstacles();
+      checkCollisions();
+      requestAnimationFrame(draw);
+    }
+
+    // Kontrol Keyboard
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowUp' && player.grounded) {
+        isJumping = true;
+      }
+
+      if (event.key === 'ArrowRight') {
+        player.dx = player.speed;
+      }
+
+      if (event.key === 'ArrowLeft') {
+        player.dx = -player.speed;
+      }
+    });
+
+    document.addEventListener('keyup', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        player.dx = 0;
+      }
+    });
+
+    // Fungsi utama untuk memulai game
+    function gameLoop() {
+      if (Math.random() < 0.02) {
+        generateObstacle();
+      }
+      draw();
+    }
+
+    // Mulai game
+    gameLoop();
+  </script>
+</body>
+</html>
